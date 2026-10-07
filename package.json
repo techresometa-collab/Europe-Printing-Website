@@ -1,4 +1,5 @@
 {
+  "homepage": "https://github.com/techresometa-collab.github.io/Europe-Printing-Website",
   "name": "crafty-printing",
   "private": true,
   "version": "1.0.0",
@@ -7,7 +8,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  
   },
   "dependencies": {
     "gh-pages": "^6.3.0",
