@@ -28,3 +28,6 @@ npm-debug.log*
 # Cache
 .eslintcache
 .vite/
+
+# Claude
+CLAUDE.md
