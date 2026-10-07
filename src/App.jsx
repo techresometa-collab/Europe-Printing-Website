@@ -36,7 +36,7 @@ function NotFound() {
 export default function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <ScrollToTop />
         {/* Language selection modal – shown on first visit */}
         <LanguageModal />

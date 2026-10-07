@@ -31,13 +31,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        # 404.html copy = SPA fallback so /about etc. work on refresh
+        run: npm run build && cp dist/index.html dist/404.html
+        env:
+          VITE_GOOGLE_SCRIPT_URL: ${{ vars.VITE_GOOGLE_SCRIPT_URL }}
+          VITE_WHATSAPP_NUMBER: ${{ vars.VITE_WHATSAPP_NUMBER }}
+          VITE_BUSINESS_EMAIL: ${{ vars.VITE_BUSINESS_EMAIL }}
+          VITE_BUSINESS_PHONE: ${{ vars.VITE_BUSINESS_PHONE }}
+          VITE_BUSINESS_ADDRESS: ${{ vars.VITE_BUSINESS_ADDRESS }}
+          VITE_MAPS_EMBED_URL: ${{ vars.VITE_MAPS_EMBED_URL }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: dist
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
